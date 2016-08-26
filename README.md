@@ -35,7 +35,7 @@ Normally you would build an Ajax-Request like that:
                     alert(ex);
                 });
                 
-This code is a wrapper around `$.ajax`. Addtitional to the arguments, you provide the `awsCredentials` as well as the `serviceName` you are trying to call:
+This code is a wrapper around `$.ajax`. Addtitional to the arguments, you provide the `awsCredentials` as well as the `serviceName = 'execute-api'`  you are trying to call:
 
     var awsCredentials = {
         region: '<your-aws-region>',
