@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="hmac-sha256.js"></script>
+<script type="text/javascript" src="sha256-min.js"></script>
+<script type="text/javascript" src="AuthenticatedAWSAjaxRequest.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var awsCredentials = {
+        region: '<your-aws-region>',
+        accessKeyId: '<your-access-key-id>',
+        secretAccessKey: '<your-secret-access-key>'
+    };
+
+    var params = {
+        url: "https://<your-api-url>.execute-api.eu-west-1.amazonaws.com/<>",
+        method: 'POST',
+        data: JSON.stringify({username: "Emmanuel", items: ["Windsurf", "Sailing"]})
+    };
+
+    new AuthenticatedAWSAjaxRequest(awsCredentials, 'execute-api', params)
+                .done(function( data, textStatus, jqXHR) {
+                    console.log(data);
+                    console.log(textStatus);
+                }).fail(function(xhr, status, ex) {
+                    console.log(xhr);
+                    alert(ex);
+                });
+</script>
+</body>
+</html>
