@@ -11,6 +11,11 @@ When you write custom code to send HTTP requests to AWS, you need to include cod
 - You are working with a programming language for which there is no AWS SDK.
 - You want complete control over how a request is sent to AWS.
 
+## Dependencies:
+
+- [JQuery Ajax] (http://jquery.com/)
+- [crypto-js](https://code.google.com/archive/p/crypto-js/) `sha256-min.js` and `hmac-sha256.js` 
+
 ##Usage:
 
 Normally you would build an Ajax-Request like that:
@@ -30,4 +35,22 @@ Normally you would build an Ajax-Request like that:
                     alert(ex);
                 });
                 
-This code 
+This code is a wrapper around `$.ajax`. Addtitional to the arguments, you provide the `awsCredentials` as well as the `serviceName` you are trying to call:
+
+    var awsCredentials = {
+        region: '<your-aws-region>',
+        accessKeyId: '<your-access-key-id>',
+        secretAccessKey: '<your-secret-access-key>'
+    };
+    
+    new AuthenticatedAWSAjaxRequest(awsCredentials, 'execute-api', params)
+                .done(function( data, textStatus, jqXHR) {
+                    console.log(data);
+                    console.log(textStatus);
+                }).fail(function(xhr, status, ex) {
+                    console.log(xhr);
+                    alert(ex);
+                });
+
+
+See [demo.html](https://github.com/emmanuelmillionaer/Ajax-Aws-Signature-V4/blob/master/demo.html) for a complete example.
